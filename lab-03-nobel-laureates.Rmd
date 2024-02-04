@@ -210,9 +210,8 @@ You don't have to switch at each exercise, you can find your a cadence that work
 ## Get to know your data
 
 1.  How many observations and how many variables are in the dataset? Use inline code to answer this question. What does each row represent?
-```{r}
-#There are 935 observations and 26 variables in this data set. Each row represents a different Nobel Prize laureate.
-```
+
+***There are `r nrow(nobel)` rows and `r ncol(nobel)` columns in the nobel dataset. Each row represents a nobel winner.***
 
 There are some observations in this dataset that we will exclude from our analysis to match the Buzzfeed results.
 
@@ -274,6 +273,17 @@ This means you'll need to define this data frame in your R Markdown document, ev
 
 3.  Create a faceted bar plot visualizing the relationship between the category of prize and whether the laureate was in the US when they won the nobel prize.
     Interpret your visualization, and say a few words about whether the Buzzfeed headline is supported by the data.
+
+```{r}
+library(ggplot2)
+
+ggplot(data = nobel_living_science, aes(y = country_us)) + 
+  geom_bar() +
+  facet_wrap(~category)
+
+
+```
+It is apparent that most of the nobel prize winners in all four categories are from the U.S.
 
     -   Your visualization should be faceted by category.
     -   For each facet you should have two bars, one for winners in the US and one for Other.
